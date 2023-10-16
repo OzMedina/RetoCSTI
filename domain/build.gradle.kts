@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.oscar.domain"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 30
