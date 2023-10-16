@@ -18,6 +18,7 @@ compose = "1.5.1"
 inject = "1"
 navigation = "2.6.0"
 coil = "2.4.0"
+retrofit = "2.9.0"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -46,6 +47,8 @@ inject = { module = "javax.inject:javax.inject", version.ref = "inject" }
 compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation" }
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }

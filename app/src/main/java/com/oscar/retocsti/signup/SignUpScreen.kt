@@ -77,4 +77,3 @@ fun SignUpScreen() {
         }
     }
 }
-
