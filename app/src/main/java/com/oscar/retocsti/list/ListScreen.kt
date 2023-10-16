@@ -16,7 +16,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
@@ -27,24 +26,17 @@ fun ListScreen() {
 
     val users = viewModel.users.collectAsState().value
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(16.dp)) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
             items(items = users, itemContent = { model ->
                 Row(modifier = Modifier.fillMaxWidth()) {
                     AsyncImage(
-                        modifier = Modifier
-                            .width(92.dp)
-                            .height(92.dp),
+                        modifier = Modifier.width(92.dp).height(92.dp),
                         model = model.avatar,
                         contentDescription = "Avatar",
                     )
                     Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp)
-                            .align(CenterVertically),
+                        modifier = Modifier.fillMaxWidth().padding(16.dp).align(CenterVertically),
                     ) {
                         Text(text = "${model.firstName} ${model.lastName}")
                         Text(text = model.email)
@@ -59,4 +51,3 @@ fun ListScreen() {
         }
     }
 }
-

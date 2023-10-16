@@ -22,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -34,12 +33,8 @@ fun HomeScreen() {
 
     var email by remember { mutableStateOf(TextFieldValue("")) }
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .padding(16.dp)) {
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .align(Alignment.Center)) {
+    Box(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        Column(modifier = Modifier.fillMaxWidth().align(Alignment.Center)) {
             Text(text = "Hi!", fontSize = 24.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(24.dp))
             OutlinedTextField(
@@ -53,7 +48,7 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(8.dp))
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { viewModel.goToSignIn() },
+                onClick = { viewModel.goToSignIn(email = email.text) },
                 shape = RoundedCornerShape(8.dp),
             ) {
                 Text(text = "Continue", modifier = Modifier.padding(8.dp))
