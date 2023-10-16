@@ -2,5 +2,11 @@
 Reto Técnico Sr. CSTI
 
 ### Users:
-  - aa@aa.com
-  - bb@bb.com
+  {
+    "email": "eve.holt@reqres.in",
+    "password": "pistol"
+}
+{
+    "email": "eve.holt@reqres.in",
+    "password": "cityslicka"
+}
