@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.oscar.retocsti.home.HomeScreen
 import com.oscar.retocsti.list.ListScreen
+import com.oscar.retocsti.navigation.directions.ArgumentKeys.EMAIL
 import com.oscar.retocsti.navigation.directions.HomeNavigation
 import com.oscar.retocsti.navigation.directions.ListNavigation
 import com.oscar.retocsti.navigation.directions.PopBackStack
@@ -25,7 +26,13 @@ fun RetoCSTINavHost(navController: NavHostController) {
         startDestination = HomeNavigation.destination,
     ) {
         composable(HomeNavigation.route) { HomeScreen() }
-        composable(SignInNavigation.route) { SignInScreen() }
+        composable(
+            route = SignInNavigation.route,
+            arguments = SignInNavigation.arguments,
+        ) { navBackStackEntry ->
+            val email = navBackStackEntry.arguments?.getString(EMAIL)
+            SignInScreen(email = email)
+        }
         composable(SignUpNavigation.route) { SignUpScreen() }
         composable(ListNavigation.route) { ListScreen() }
     }

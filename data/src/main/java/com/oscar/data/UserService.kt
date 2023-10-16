@@ -4,6 +4,7 @@ import com.oscar.data.request.UserRequest
 import com.oscar.data.response.UserLoginResponse
 import com.oscar.data.response.UserRegisterResponse
 import com.oscar.data.response.UserResponse
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
@@ -12,8 +13,8 @@ interface UserService {
     suspend fun getUsersByPage(): UserResponse
 
     @POST("register")
-    suspend fun registerUser(request: UserRequest): UserRegisterResponse
+    suspend fun registerUser(@Body request: UserRequest): UserRegisterResponse
 
     @POST("login")
-    suspend fun loginUser(request: UserRequest): UserLoginResponse
+    suspend fun loginUser(@Body request: UserRequest): UserLoginResponse
 }

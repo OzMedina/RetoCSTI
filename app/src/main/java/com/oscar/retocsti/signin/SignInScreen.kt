@@ -1,5 +1,6 @@
 package com.oscar.retocsti.signin
 
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,12 +16,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
@@ -31,32 +34,48 @@ import com.google.android.material.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignInScreen() {
+fun SignInScreen(email: String?) {
     val viewModel = hiltViewModel<SignInViewModel>()
+    val isLogin = viewModel.login.collectAsState().value
 
-    var email by remember { mutableStateOf(TextFieldValue("")) }
+    val context = LocalContext.current
+    var password by remember { mutableStateOf(TextFieldValue("")) }
 
-    Box(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    if (isLogin != null && !isLogin) {
+        Toast.makeText(context, "Usuario y/o contraseña incorrectos.", Toast.LENGTH_SHORT).show()
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+    ) {
         Icon(
             modifier = Modifier.clickable { viewModel.goToBackStack() },
             painter = painterResource(id = R.drawable.ic_arrow_back_black_24),
             contentDescription = "Arrow Back",
         )
-        Column(modifier = Modifier.fillMaxWidth().align(Alignment.Center)) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.Center),
+        ) {
             Text(text = "Log in", fontSize = 24.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(24.dp))
+            Text(text = "Correo: $email")
+            Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = email,
+                value = password,
                 onValueChange = { newText ->
-                    email = newText
+                    password = newText
                 },
-                label = { Text(text = "Email") },
+                label = { Text(text = "Password") },
             )
             Spacer(modifier = Modifier.height(8.dp))
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { viewModel.goToList() },
+                onClick = { viewModel.login(email = email.orEmpty(), password = password.text) },
                 shape = RoundedCornerShape(8.dp),
             ) {
                 Text(text = "Continue", modifier = Modifier.padding(8.dp))

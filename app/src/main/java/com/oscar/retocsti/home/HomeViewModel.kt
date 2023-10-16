@@ -11,8 +11,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val navigationManager: NavigationManager) :
     ViewModel() {
 
-    fun goToSignIn() {
-        navigationManager.navigate(SignInNavigation)
+    fun goToSignIn(email: String) {
+        navigationManager.navigate(SignInNavigation.withEmail(email = email))
     }
 
     fun goToSignUp() {

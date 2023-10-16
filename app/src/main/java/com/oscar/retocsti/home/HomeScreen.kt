@@ -48,7 +48,7 @@ fun HomeScreen() {
             Spacer(modifier = Modifier.height(8.dp))
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { viewModel.goToSignIn() },
+                onClick = { viewModel.goToSignIn(email = email.text) },
                 shape = RoundedCornerShape(8.dp),
             ) {
                 Text(text = "Continue", modifier = Modifier.padding(8.dp))

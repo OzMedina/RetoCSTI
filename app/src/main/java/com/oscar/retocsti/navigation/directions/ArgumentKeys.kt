@@ -1,3 +1,5 @@
 package com.oscar.retocsti.navigation.directions
 
-object ArgumentKeys
+object ArgumentKeys {
+    const val EMAIL = "email"
+}

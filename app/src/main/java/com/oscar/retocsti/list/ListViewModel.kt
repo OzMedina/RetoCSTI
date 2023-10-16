@@ -23,7 +23,7 @@ class ListViewModel @Inject constructor(private val getUsersByPageUseCase: GetUs
         getUsersByPage()
     }
 
-    fun getUsersByPage() {
+    private fun getUsersByPage() {
         viewModelScope.launch {
             getUsersByPageUseCase().onStart {
             }.catch {

@@ -8,7 +8,7 @@ import javax.inject.Inject
 class RegisterUseCase @Inject constructor(private val userRepository: UserRepository) {
     operator fun invoke(email: String, password: String) = flow {
         try {
-            val result = userRepository.register(email = email, password = password)
+            val result = userRepository.register(email = email, password = password).token
             emit(Resource.Success(result))
         } catch (e: Exception) {
             emit(Resource.Error("Connection Failed"))
